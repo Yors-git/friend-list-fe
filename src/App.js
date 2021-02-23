@@ -7,18 +7,32 @@ import Col from 'react-bootstrap/Col';
 
 import Friends from './components/Friends';
 import NewFriend from './components/NewFriend';
+import EditFriend from './components/EditFriend';
 
 function App() {
-const [ afterRequest, setAfterRequest ] = useState(false)
-const toggleRequest = () => {
-  setAfterRequest(!afterRequest)
-}
+  const [ afterRequest, setAfterRequest ] = useState(false)
+  const [ friendId, setFriendId ] = useState()
+  const toggleRequest = () => {
+    setAfterRequest(!afterRequest)
+  }
+
+  const getFriendId = (passedfriendId) => {
+    setFriendId(passedfriendId)
+  }
+  
+  const newFriend = () => {
+    setFriendId('')
+  }
 
   return (
     <Container fluid>
       <Row>
-        <Friends toggleRequest={afterRequest}/>
-        <NewFriend toggleFriends={toggleRequest} />
+        <Friends toggleRequest={afterRequest} getFriendId={getFriendId} newFriend={newFriend}/>
+        {friendId ? 
+          <EditFriend toggleFriends={toggleRequest} friendId={friendId} newFriend={newFriend}/>
+        :
+          <NewFriend toggleFriends={toggleRequest} />
+        }
       </Row>
     </Container>
   );

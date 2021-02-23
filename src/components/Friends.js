@@ -2,18 +2,23 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 import Badge from 'react-bootstrap/Badge';
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar as fasStar } from '@fortawesome/free-solid-svg-icons';
 import { faStar as farStar } from '@fortawesome/free-regular-svg-icons';
+import { faPen } from '@fortawesome/free-solid-svg-icons';
+import { faPlus as fasPlus } from '@fortawesome/free-solid-svg-icons';
 
 export default function Friends(props) {
   const [ isLoading, setIsLoading ] = useState(true)
   const [ friendsData, setFriendsData ] = useState()
   const [ search, setSearch ] = useState(null)
 
+  const getFriendId = props.getFriendId
+  const newFriend = props.newFriend
   const httpAddress = 'http://localhost:5000'
 
   useEffect(() => {
@@ -24,7 +29,6 @@ export default function Friends(props) {
   const getFriends = async () => {
     const response = await axios.get(httpAddress);
     setFriendsData(response.data.friends);
-    
     setIsLoading(false);
   }
 
@@ -75,8 +79,12 @@ export default function Friends(props) {
         <ListGroup.Item key={friend.id}>
           {friend.name} {friend.lastName} {` `} 
           {friend.favorite ? 
-          <Badge variant="light" onClick={()=>changeFav(friend)}><FontAwesomeIcon icon={fasStar} size="lg"/></Badge> : 
+          <>
+          <Badge variant="light" onClick={()=>changeFav(friend)}><FontAwesomeIcon icon={fasStar} size="lg"/></Badge>
+          <FontAwesomeIcon className="mx-1" icon={faPen} size="sm" onClick={()=>getFriendId(friend.id)}/> </> :
+          <> 
           <Badge variant="light" onClick={()=>changeFav(friend)}><FontAwesomeIcon icon={farStar} size="lg"/></Badge>
+          <FontAwesomeIcon className="mx-1" icon={faPen} size="sm" onClick={()=>getFriendId(friend.id)}/> </>
           }
         </ListGroup.Item>
       ))
@@ -87,8 +95,12 @@ export default function Friends(props) {
         <ListGroup.Item key={friend.id}>
           {friend.name} {friend.lastName} {` `} 
           {friend.favorite ? 
-          <Badge variant="light" onClick={()=>changeFav(friend)}><FontAwesomeIcon icon={fasStar} size="lg"/></Badge> : 
+          <>
+          <Badge variant="light" onClick={()=>changeFav(friend)}><FontAwesomeIcon icon={fasStar} size="lg"/></Badge>
+          <FontAwesomeIcon className="mx-1" icon={faPen} size="sm" onClick={()=>getFriendId(friend.id)}/> </> :
+          <> 
           <Badge variant="light" onClick={()=>changeFav(friend)}><FontAwesomeIcon icon={farStar} size="lg"/></Badge>
+          <FontAwesomeIcon className="mx-1" icon={faPen} size="sm" onClick={()=>getFriendId(friend.id)}/> </>
           }
         </ListGroup.Item>
       ))
@@ -103,7 +115,10 @@ export default function Friends(props) {
 
   return (
     <Col sm={3} className="search-col py-4">
+      <Row className="justify-content-between">
       <h4 className="px-3">Friends:</h4>
+      <FontAwesomeIcon className="mx-3" icon={fasPlus} size="2x" onClick={()=>{newFriend()}}/>
+      </Row>
       <Container>
         <Form>
           <Form.Group controlId="formBasicEmail">
