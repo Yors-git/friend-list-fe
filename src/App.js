@@ -9,11 +9,16 @@ import Friends from './components/Friends';
 import NewFriend from './components/NewFriend';
 
 function App() {
+const [ afterRequest, setAfterRequest ] = useState(false)
+const toggleRequest = () => {
+  setAfterRequest(!afterRequest)
+}
+
   return (
     <Container fluid>
       <Row>
-        <Friends />
-        <NewFriend />
+        <Friends toggleRequest={afterRequest}/>
+        <NewFriend toggleFriends={toggleRequest} />
       </Row>
     </Container>
   );

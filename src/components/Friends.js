@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar as fasStar } from '@fortawesome/free-solid-svg-icons';
 import { faStar as farStar } from '@fortawesome/free-regular-svg-icons';
 
-export default function Friends() {
+export default function Friends(props) {
   const [ isLoading, setIsLoading ] = useState(true)
   const [ friendsData, setFriendsData ] = useState()
   const [ search, setSearch ] = useState(null)
@@ -18,11 +18,13 @@ export default function Friends() {
 
   useEffect(() => {
     getFriends()
-  }, [])
+    
+  }, [props.toggleRequest])
 
   const getFriends = async () => {
     const response = await axios.get(httpAddress);
     setFriendsData(response.data.friends);
+    
     setIsLoading(false);
   }
 
@@ -33,7 +35,12 @@ export default function Friends() {
       "name":friend.name,
       "lastName":friend.lastName,
       "gender":friend.gender,
-      "phone1":friend.phone1
+      "phone1":friend.phone1,
+      "phoneType1":friend.phoneType1,
+      "phone2":friend.phone2,
+      "phoneType2":friend.phoneType2,
+      "phone3":friend.phone3,
+      "phoneType3":friend.phoneType3,
     };
     var config = {
       method: 'patch',
