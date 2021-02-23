@@ -16,7 +16,6 @@ export default function NewFriend(props) {
   const toggleFriends = props.toggleFriends
   const httpAddress = 'http://localhost:5000'
   const onSubmit = async data => {
-    console.log(data);
     var data = {
       "favorite":data.favorite,
       "marital":data.marital,
