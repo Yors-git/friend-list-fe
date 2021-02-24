@@ -19,7 +19,7 @@ export default function Friends(props) {
 
   const getFriendId = props.getFriendId
   const newFriend = props.newFriend
-  const httpAddress = 'http://localhost:5000'
+  const httpAddress = 'http://friendlistback-env.eba-dpw2ityc.us-east-2.elasticbeanstalk.com/'
 
   useEffect(() => {
     getFriends()

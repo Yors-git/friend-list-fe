@@ -25,7 +25,7 @@ export default function EditFriend(props) {
 
   //Get fields for selected friend
   const getFriends = async () => {
-    const response = await axios.get(`http://localhost:5000/${props.friendId}`);
+    const response = await axios.get(`http://friendlistback-env.eba-dpw2ityc.us-east-2.elasticbeanstalk.com/${props.friendId}`);
     setFriendData(response.data.friend);
     setIsLoading(false);
   }
@@ -41,7 +41,7 @@ export default function EditFriend(props) {
   }
 
   //Submit changes
-  const httpAddress = 'http://localhost:5000'
+  const httpAddress = 'http://friendlistback-env.eba-dpw2ityc.us-east-2.elasticbeanstalk.com/'
 
   const onSubmit = async data => {
     var data = {
