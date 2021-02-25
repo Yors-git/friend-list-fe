@@ -41,7 +41,7 @@ export default function EditFriend(props) {
   }
 
   //Submit changes
-  const httpAddress = 'http://friendlistback-env.eba-dpw2ityc.us-east-2.elasticbeanstalk.com/'
+  const httpAddress = 'http://friendlistback-env.eba-dpw2ityc.us-east-2.elasticbeanstalk.com'
 
   const onSubmit = async data => {
     var data = {
@@ -107,8 +107,8 @@ export default function EditFriend(props) {
             <Form.Control placeholder="Last name" name="lastName" ref={register} value={friendData.lastName} onChange={onValueChange} />
             <h5 className="py-3 mb-0">Marital Status</h5>
             <div className="mb-3" >
-              <Form.Check inline label="Married" type="radio" name="marital" id="inline-radio-1" value={true} ref={register} checked={friendData.marital ===true} onChange={onValueChange}/>
-              <Form.Check inline label="Unmarried" type="radio" name="marital" id="inline-radio-2" value={false} ref={register} checked={friendData.marital ===false} onChange={onValueChange}/>
+              <Form.Check inline label="Married" type="radio" name="marital" id="inline-radio-12" value={true} ref={register} checked={friendData.marital === true} onChange={onValueChange}/>
+              <Form.Check inline label="Unmarried" type="radio" name="marital" id="inline-radio-22" value={false} ref={register} checked={!friendData.marital === true} onChange={onValueChange}/>
             </div>
           </Col>
         </Form.Row>

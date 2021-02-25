@@ -14,7 +14,7 @@ import { faMinus as fasMinus } from '@fortawesome/free-solid-svg-icons';
 export default function NewFriend(props) {
   const { register, handleSubmit, watch, errors } = useForm();
   const toggleFriends = props.toggleFriends
-  const httpAddress = 'http://friendlistback-env.eba-dpw2ityc.us-east-2.elasticbeanstalk.com/'
+  const httpAddress = 'http://friendlistback-env.eba-dpw2ityc.us-east-2.elasticbeanstalk.com'
   const onSubmit = async data => {
     var data = {
       "favorite":data.favorite,
